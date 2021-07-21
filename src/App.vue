@@ -1,30 +1,64 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <nav class="navbar">
+    <router-link to="/" class="navbar_link">Home</router-link>
+    <router-link to="/add-task" class="navbar_link">Add Task</router-link>
+    <button class="navbar_link" @click="deleteTask()">Delete</button>
+  </nav>
+  <router-view />
 </template>
 
+<script>
+export default {
+  methods: {
+    deleteTask() {
+      this.$store.commit('deleteTask')
+    }
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Tahoma, sans-serif;
 }
-
-#nav {
-  padding: 30px;
+ul {
+  list-style: none;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+a {
+  text-decoration: none;
+  color: black;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+button {
+  cursor: pointer;
+}
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: grey;
+}
+.navbar_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  transition: all 0.3s ease-in;
+}
+.navbar_link:hover {
+  background-color: white;
+  color: grey;
+}
+.active {
+  background-color: white;
+  color: grey;
 }
 </style>

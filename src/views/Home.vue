@@ -1,20 +1,27 @@
 <template>
-  <div class="home">
-    <Navbar />
-    <ToDo />
-  </div>
+<h1>Listes des tâches</h1>
+  <ul class="home">
+    <ToDo
+      v-for="task in tasks"
+      :key="task.name"
+      :name="task.name"
+      :completed="task.completed"
+    />
+  </ul>
 </template>
 
 <script>
-// @ is an alias to /src
-import ToDo from '@/components/ToDo.vue'
-import Navbar from '@/components/Navbar.vue'
+import ToDo from "@/components/ToDo.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Navbar,
-    ToDo
-  }
-}
+    ToDo,
+  },
+  computed: {
+    tasks() {
+      return this.$store.state.taskList
+    }
+  },
+};
 </script>
